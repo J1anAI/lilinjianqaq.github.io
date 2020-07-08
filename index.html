@@ -158,6 +158,207 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringBoot整合Thymeleaf" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/08/SpringBoot%E6%95%B4%E5%90%88Thymeleaf/">SpringBootz整合Thymeleaf</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/08/SpringBoot%E6%95%B4%E5%90%88Thymeleaf/" class="archive-article-date">
+  	<time datetime="2020-07-08T12:26:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、Thymeleaf-介绍"><a href="#1、Thymeleaf-介绍" class="headerlink" title="1、Thymeleaf 介绍"></a>1、Thymeleaf 介绍</h2><p>Thymeleaf的主要目标是将优雅的自然模板带到开发工作流程中，并将HTML在浏览器 中正确显示，并且可以作为静态原型，让开发团队能更容易地协作。Thymeleaf 能够处理 HTML，XML，JavaScript，CSS甚至纯文本。 长期以来,jsp 在视图领域有非常重要的地位,随着时间的变迁,出现了一位新的挑战者:Thymeleaf,Thymeleaf 是原生的,不依赖于标签库.它能够在接受原始HTML的地方进行编 辑和渲染.因为它没有与Servelet规范耦合,因此Thymeleaf模板能进入jsp所无法涉足的领域。</p>
+<h2 id="2、Thymeleaf-基本使用"><a href="#2、Thymeleaf-基本使用" class="headerlink" title="2、Thymeleaf 基本使用"></a>2、Thymeleaf 基本使用</h2><p>修改POM文件，添加Thymeleaf启动器依赖 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="3、Thymeleaf语法使用"><a href="#3、Thymeleaf语法使用" class="headerlink" title="3、Thymeleaf语法使用"></a>3、Thymeleaf语法使用</h2><p>再html标签中添加命名空间：xmlns:th=”<a href="http://www.thymeleaf.org&quot;" target="_blank" rel="noopener">http://www.thymeleaf.org&quot;</a></p>
+<h3 id="3-1、字符串与变量输出操作"><a href="#3-1、字符串与变量输出操作" class="headerlink" title="3.1、字符串与变量输出操作"></a>3.1、字符串与变量输出操作</h3><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">th:text</td>
+<td align="left">在页面中输出值</td>
+</tr>
+<tr>
+<td align="left">th:value</td>
+<td align="left">可以将一个值放入到 input 标签的 value 中</td>
+</tr>
+</tbody></table>
+<h3 id="3-2、字符串操作"><a href="#3-2、字符串操作" class="headerlink" title="3.2、字符串操作"></a>3.2、字符串操作</h3><p>Thymeleaf 提供了一些内置对象，内置对象可直接在模板中使用。这些对象是以#引用<br>的。<br>1）引用内置对象需要使用#<br>2）大部分内置对象的名称都以 s 结尾。如：strings、numbers、dates </p>
+<h3 id="3-3、日期格式化处理"><a href="#3-3、日期格式化处理" class="headerlink" title="3.3、日期格式化处理"></a>3.3、日期格式化处理</h3><p>dates.format(key)</p>
+<h3 id="3-4、条件判断、迭代遍历"><a href="#3-4、条件判断、迭代遍历" class="headerlink" title="3.4、条件判断、迭代遍历"></a>3.4、条件判断、迭代遍历</h3><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">th:if</td>
+<td align="left">条件判断</td>
+</tr>
+<tr>
+<td align="left">th:switch/th:case</td>
+<td align="left">th:switch / th:case 与 Java 中的 switch 语句等效，有条件地显示匹配的内容。如果有 多个匹配结果只选择第一个显示。 th:case=”*”表示 Java 中 switch 的 default，即没有 case 的值为 true 时则显示 th:case=”*” 的内容</td>
+</tr>
+<tr>
+<td align="left">th:each</td>
+<td align="left">迭代器，用于循环迭代集合</td>
+</tr>
+</tbody></table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SpringBoot//" class="article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SpringBoot/Thymeleaf//" class="article-tag-list-link color5">Thymeleaf</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/08/SpringBoot%E6%95%B4%E5%90%88Thymeleaf/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-SpringBootz整合Freemarker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/08/SpringBootz%E6%95%B4%E5%90%88Freemarker/">SpringBoot整合Freemarker</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/08/SpringBootz%E6%95%B4%E5%90%88Freemarker/" class="archive-article-date">
+  	<time datetime="2020-07-08T12:06:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、Jsp和Freemarker的区别"><a href="#1、Jsp和Freemarker的区别" class="headerlink" title="1、Jsp和Freemarker的区别"></a>1、Jsp和Freemarker的区别</h2><h3 id="1-1、jsp"><a href="#1-1、jsp" class="headerlink" title="1.1、jsp"></a>1.1、jsp</h3><p>Jsp在做视图渲染的过程中完全是靠服务端Tomcat来完成的。Tomcat先把Jsp编译成Servlet，然后执行Servlet，Servlet中的打印语句再把结果输出给页面，然后再客户端的浏览器就可以看到数据了。</p>
+<h3 id="1-2、Freemarker"><a href="#1-2、Freemarker" class="headerlink" title="1.2、Freemarker"></a>1.2、Freemarker</h3><p>Freemarker(以及Thymeleaf)模板视图渲染过程和Jsp是完全不一样的。它是依赖客户端来渲染的。Freemarker的视图会返回给客户端，渲染的数据也会 返回给客户端，再客户端浏览器中完成数据和页面的渲染过程。效率相比再服务端数据渲染的Jsp效率会高一些。</p>
+<h2 id="2、SpringBoot整合Freemarker"><a href="#2、SpringBoot整合Freemarker" class="headerlink" title="2、SpringBoot整合Freemarker"></a>2、SpringBoot整合Freemarker</h2><p>1、创建项目<br>2、修改POM文件添加Freemarker启动器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-freemarker&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>3、创建实体类<br>4、创建Contrller<br>5、创建视图(先创建html文件，最后把后缀改为.ftl)<br>6、修改配置文件添加后缀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># spring.freemarker.suffix&#x3D;.ftl</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SpringBoot//" class="article-tag-list-link color1">SpringBoot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/SpringBoot/Freemarker//" class="article-tag-list-link color1">Freemarker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/08/SpringBootz%E6%95%B4%E5%90%88Freemarker/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-springbootf中关于静态资源的访问" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -197,11 +398,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/springboot//" class="article-tag-list-link color1">springboot</a>
+        			<a href="/categories/SpringBoot//" class="article-tag-list-link color1">SpringBoot</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="/categories/springboot/静态资源//" class="article-tag-list-link color5">静态资源</a>
+        			<a href="/categories/SpringBoot/静态资源//" class="article-tag-list-link color5">静态资源</a>
         		</li>
       		
 		</ul>
