@@ -158,6 +158,112 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-KMP算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/29/KMP%E7%AE%97%E6%B3%95/">KMP算法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/29/KMP%E7%AE%97%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-07-29T12:14:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/1.png" class>
+<p>给定两个字符串S=”s1s2s3…sn”和T= “t1t2t3…tm”在主串S中寻找子串 T的过程就称之为字符串的模式匹配（patternmatching），T 称为模式（pattern）。如果匹配成功，则返回T在S中的位置；如果匹配失败，则返回-1。 </p>
+<h2 id="KMP算法解答"><a href="#KMP算法解答" class="headerlink" title="KMP算法解答"></a>KMP算法解答</h2><p>KMP算法的核心是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数，从而达到快速匹配的目的。<br>KMP算法和BF算法的“开局”是一样的，即从主串x=0的字符开始和模式串y=0的字符进行比较。<br>第一轮，主串和模式串的第一个字符不匹配，则让主串的 x=1字符和模式串的 y=0的字符进行 匹配，如下图所示：</p>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/2.png" class>
+<p>第二轮，主串索引 x为[1,4]的字符和模式串索引 y为[0,3]的字符匹配，此时主串索引 x=5 的字 符和模式串索引 y=4的字符不匹配。</p>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/3.png" class>
+<p>这时候，如何有效利用已匹配的字符串“ABAB”呢？我们可以发现，在字符串“ABAB”当中，后 两个字符“AB”和前两位字符“AB”是相同的：</p>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/4.png" class>
+<p>因此，此时主串 x的指针无需回溯，只需修改 y指向2 即可，也就是让主串x=5的字符和模式<br>串 y=2的字符进行比较，这样就减少了比较的次数。</p>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/5.png" class>
+<p>此时代码怎么实现指针y的移动就成为算法的最关键的问题。此时就需要引入一个next数组，使得next[y]为指针y要去的地方。</p>
+<h2 id="求解next数组"><a href="#求解next数组" class="headerlink" title="求解next数组"></a>求解next数组</h2><p>由于已匹配前缀数组在主串和模式串当中是相同的，所以我们仅仅依据模式串，就足以生成next数组。<br>就下来，我们以模式串”ABABCABAAB”为例，来讲解next 数组的推导过程，如下图所示：</p>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/6.png" class>
+<p>索引为 0时，该字符串没有前缀，因此最长共有元素长度计为-1（方便 KMP 算法使用）。<br>索引为 1时，该字符串的前缀为”A”，此时没有共有元素，因此最长共有元素长度为0。<br>索引为 2时，该字符串的前缀为”AB”，此时没有共有元素，因此最长共有元素长度为0。<br>索引为 3时，该字符串的前缀为”ABA”，此时共有元素为”A”，因此最长共有元素长度为1。<br>索引为 4时，该字符串的前缀为”ABAB”，此时共有元素为”AB”，因此最长共有元素长度为2。<br>索引为 5时，该字符串的前缀为”ABABC”，此时没有共有元素，因此最长共有元素长度为0。<br>索引为 6时，该字符串的前缀为”ABABCA”，此时共有元素为”A”，因此最长共有元素长度为1。<br>索引为 7时，该字符串的前缀为”ABABCAB”，此时共有元素为”AB”，因此最长共有元素长度为2。<br>索引为 8时，该字符串的前缀为”ABABCABA”，此时共有元素为”ABA”，因此最长共有元素长度为3。<br>索引为 9时，该字符串的前缀为”ABABCABAA”，此时共有元素为”A”，因此最长共有元素长度为 1。<br>因此，模式串”ABABCABAAB”对应的next数组就是{-1,0,0,1,2,0,1,2,3,1}，如下图所示：</p>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/7.png" class>
+<p>也就是说，主串索引 x的字符和模式串索引 y的字符不匹配，模式串y指向的位置就是 next[y] 所对应的位置。例如，当 x=5，y=4所对应的字符不匹配是，模式串 y 指向的位置就是 next[4]所对 应的位置，也就是让 y指向索引为 2的位置。</p>
+<h2 id="KMP算法的代码实现"><a href="#KMP算法的代码实现" class="headerlink" title="KMP算法的代码实现"></a>KMP算法的代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">public class Test02 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String s1 &#x3D; &quot;BABABACABABCABAABD&quot;;</span><br><span class="line">        String s2 &#x3D; &quot;ABABCABAAB&quot;;</span><br><span class="line">        System.out.println(Arrays.toString(getNext(s2)));</span><br><span class="line">        System.out.println(kmp(s1,s2));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int kmp(String s1,String s2)&#123;</span><br><span class="line">        int[] next &#x3D; getNext(s2);</span><br><span class="line">        int x &#x3D; 0;</span><br><span class="line">        int y &#x3D; 0;</span><br><span class="line">        while (x&lt;s1.length()&amp;&amp;y&lt;s2.length()) &#123;</span><br><span class="line">            if(y&#x3D;&#x3D;-1||s1.charAt(x)&#x3D;&#x3D;s2.charAt(y))&#123;</span><br><span class="line">                x++;</span><br><span class="line">                y++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                y&#x3D;next[y];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(y&#x3D;&#x3D;s2.length())&#123;</span><br><span class="line">            return x-y;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int[] getNext(String s)&#123;</span><br><span class="line">        int [] next &#x3D; new int[s.length()];</span><br><span class="line">        next[0]&#x3D;-1;</span><br><span class="line">        int y &#x3D; 0;</span><br><span class="line">        int len &#x3D; -1;</span><br><span class="line"></span><br><span class="line">        while(y&lt;s.length()-1)&#123;</span><br><span class="line">            if(len&#x3D;&#x3D;-1||s.charAt(len)&#x3D;&#x3D;s.charAt(y))&#123;</span><br><span class="line">                y++; </span><br><span class="line">                len++; </span><br><span class="line">				next[y]&#x3D;len;</span><br><span class="line"></span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                len &#x3D; next[len];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码详解"><a href="#代码详解" class="headerlink" title="代码详解"></a>代码详解</h2><p>在上述代码中，getNext()方法最为关键，让我们接下来一步一步分析：<br>1、定义两个指针y和len,相对于定义的next数组来说，y相当于next数组的索引值(范围是从0到next.length-1)、len相当与next中的元素值(len指向此时索引值为next[y]的元素)；而这两个指针相对于模式串来说，y表示此时模式串与主串相比较的元素、len表示如果此时模式串与主串相比较的元素不同时，下一步y要移动的位置。<br>2、如果s.charAt(len)==s.charAt(y)时，也就是相当于next[len+1]之前的len个元素和next[y+1]之前的len个元素都相同，所以进行y++;len++；next[y]=len。<br>3、如果s.charAt(len)!=s.charAt(y)时，也就是相当于next[len+1]之前的len个元素和next[y+1]之前的len个元素不相同，此时进行len=next[len];使得next[len+1]之前的len个元素和next[y+1]之前的len个元素都相同。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">KMP算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构和算法//" class="article-tag-list-link color3">数据结构和算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/数据结构和算法/KMP算法//" class="article-tag-list-link color1">KMP算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/29/KMP%E7%AE%97%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-复杂链表的复制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -817,11 +923,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">centos8</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">centos8</a>
         		</li>
       		
 		</ul>
@@ -1047,83 +1153,6 @@
 
 
   
-    <article id="post-hexo写博客教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/06/hexo%E5%86%99%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">hexo写博客步骤</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/06/hexo%E5%86%99%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-05-06T09:21:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>hexo n “博客名称”</p>
-<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>打开生成的md文件</p>
-<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>写博文</p>
-<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>先清理 hexo clean<br>再生成 hexo g<br>启动看一下预览(localhost:4000) hexo s<br>部署到github hexo d</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/hexo//" class="article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/06/hexo%E5%86%99%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1235,15 +1264,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Freemarker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1251,7 +1272,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">centos8</a>
+                <a href="javascript:void(0)" class="js-tag color1">KMP算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Freemarker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1268,6 +1297,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">链表</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">centos8</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1424,5 +1457,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
+
+
 </body>
 </html>
