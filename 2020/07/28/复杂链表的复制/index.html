@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>复杂链表的复制 - Hexo</title>
+  <title>复杂链表的复制 - 健</title>
   
     <meta name="keywords" content="链表">
   
@@ -31,11 +31,27 @@
 
   <!-- import meta -->
   
+    
+      <meta name="msapplication-TileColor" content="#ffffff">
+    
+      <meta name="msapplication-config" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/browserconfig.xml">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
 
   <!-- link -->
   
 
   <!-- import link -->
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/site.webmanifest">
+  <link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon.ico">
   
 
   
@@ -452,9 +468,9 @@
 
 
   
-  <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2>   <img src="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/1.png" class="lazyload" data-srcset="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/1.png" srcset="data:image/png;base64,666" class>
+  <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2>   <img src="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/1.png" class="lazyload" data-srcset="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/1.png" srcset="data:image/png;base64,666">
 <p>   输入一个复杂链表（每个节点由三部分组成：data用于保存节点的数据值，next 指针用于指向<br>下一个节点，random指针用于指向任意一个节点），返回结果为复制后复杂链表的首节点。 </p>
-<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>   第一步：复制原始链表上的每一个节点 N，复制的结果就是对应的节点 N’，然后把 N’放在<br>N之后，如下图所示：<br>   <img src="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/2.png" class="lazyload" data-srcset="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/2.png" srcset="data:image/png;base64,666" class><br>   第二步：设置每个N’节点的random指针。如果原始链表上的节点N的 random指向S，则对应<br>的复制节点 N’的 random指向 S’，如下图所示：<br>   <img src="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/3.png" class="lazyload" data-srcset="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/3.png" srcset="data:image/png;base64,666" class><br>   第三步：把长链表拆分为两个链表。把奇数位置的节点用next 连接起来就是原始链表，把偶数<br>位置的节点用next 连接起来就是复制出来的链表，如下图所示：<br>   <img src="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/4.png" class="lazyload" data-srcset="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/4.png" srcset="data:image/png;base64,666" class></p>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>   第一步：复制原始链表上的每一个节点 N，复制的结果就是对应的节点 N’，然后把 N’放在<br>N之后，如下图所示：<br>   <img src="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/2.png" class="lazyload" data-srcset="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/2.png" srcset="data:image/png;base64,666"><br>   第二步：设置每个N’节点的random指针。如果原始链表上的节点N的 random指向S，则对应<br>的复制节点 N’的 random指向 S’，如下图所示：<br>   <img src="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/3.png" class="lazyload" data-srcset="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/3.png" srcset="data:image/png;base64,666"><br>   第三步：把长链表拆分为两个链表。把奇数位置的节点用next 连接起来就是原始链表，把偶数<br>位置的节点用next 连接起来就是复制出来的链表，如下图所示：<br>   <img src="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/4.png" class="lazyload" data-srcset="/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/4.png" srcset="data:image/png;base64,666"></p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">package com.jian.p5.linkedlisttest;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 复杂链表的复制</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class Test12 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Node lastNode &#x3D; new Node(&quot;E&quot;);</span><br><span class="line">        Node node4 &#x3D; new Node(&quot;D&quot;,lastNode);</span><br><span class="line">        Node node3 &#x3D; new Node(&quot;C&quot;,node4);</span><br><span class="line">        Node node2 &#x3D; new Node(&quot;B&quot;,node3);</span><br><span class="line">        Node headNode &#x3D; new Node(&quot;A&quot;,node2);</span><br><span class="line">        headNode.random&#x3D;node3;</span><br><span class="line">        node2.random&#x3D;lastNode;</span><br><span class="line">        node4.random&#x3D;node2;</span><br><span class="line"></span><br><span class="line">        printLinkedList(cloneNode(headNode));</span><br><span class="line">    &#125;</span><br><span class="line">    public static Node cloneNode(Node headNode)&#123;</span><br><span class="line">        if(headNode&#x3D;&#x3D;null)</span><br><span class="line">            return null;</span><br><span class="line">        &#x2F;&#x2F;复制节点为被复制节点的next</span><br><span class="line">        Node temp &#x3D; headNode;</span><br><span class="line">        while (temp!&#x3D;null)&#123;</span><br><span class="line">            Node newNode &#x3D; new Node(temp.data+&quot;&#39;&quot;,temp.next);</span><br><span class="line">            temp.next&#x3D;newNode;</span><br><span class="line">            temp&#x3D;newNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;模仿原来节点 添加复制后的节点的random</span><br><span class="line">        temp &#x3D; headNode;</span><br><span class="line">        while(temp!&#x3D;null)&#123;</span><br><span class="line">            &#x2F;&#x2F;获取复制后的节点</span><br><span class="line">            Node node &#x3D; temp.next;</span><br><span class="line">            if(temp.random!&#x3D;null)&#123;</span><br><span class="line">                node.random&#x3D;temp.random.next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp&#x3D;node.next;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F;分离链表</span><br><span class="line">        temp&#x3D;headNode;</span><br><span class="line">        Node head &#x3D; headNode.next;</span><br><span class="line">        while(temp!&#x3D;null)&#123;</span><br><span class="line">            &#x2F;&#x2F;获取复制节点</span><br><span class="line">            Node clone &#x3D; temp.next;</span><br><span class="line">            &#x2F;&#x2F;还原之前链表</span><br><span class="line">            temp.next&#x3D;clone.next;</span><br><span class="line">&#x2F;*            if(clone.next&#x3D;&#x3D;null)&#123;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F;复制之后链表</span><br><span class="line">            clone.next&#x3D;temp.next.next;*&#x2F;</span><br><span class="line">            clone.next &#x3D; clone.next&#x3D;&#x3D;null ? null : clone.next.next; &#x2F;&#x2F;(此时temp.next是和clone.next一样的) 这一行代替了上边的注释行</span><br><span class="line"></span><br><span class="line">            temp&#x3D;temp.next;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        return head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class Node&#123;</span><br><span class="line">        private Object data;</span><br><span class="line"></span><br><span class="line">        private Node next;</span><br><span class="line"></span><br><span class="line">        private Node random;</span><br><span class="line"></span><br><span class="line">        public Node(Object data) &#123;</span><br><span class="line">            this.data &#x3D; data;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public Node(Object data, Node next) &#123;</span><br><span class="line">            this.data &#x3D; data;</span><br><span class="line">            this.next &#x3D; next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void printLinkedList(Node headNode)&#123;</span><br><span class="line">        Node tempNode &#x3D; headNode;</span><br><span class="line">        while(tempNode!&#x3D;null)&#123;</span><br><span class="line">            System.out.println(tempNode.data);</span><br><span class="line">            tempNode&#x3D;tempNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
   
@@ -515,7 +531,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/&title=复杂链表的复制 - Hexo&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/&title=复杂链表的复制 - 健&summary="
           
           >
           
@@ -527,7 +543,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/&title=复杂链表的复制 - Hexo&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/&title=复杂链表的复制 - 健&summary="
           
           >
           
@@ -539,7 +555,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/&title=复杂链表的复制 - Hexo&summary="
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/28/%E5%A4%8D%E6%9D%82%E9%93%BE%E8%A1%A8%E7%9A%84%E5%A4%8D%E5%88%B6/&title=复杂链表的复制 - 健&summary="
           
           >
           
@@ -704,12 +720,13 @@
     
       
         <div class='copyright'>
-        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+        <p><a href="http://www.beian.miit.gov.cn/" target="_blank" rel="noopener">Copyright © 2017-2020 晋ICP备20005012号</a></p>
 
         </div>
       
     
   </footer>
+
 
 
       <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>

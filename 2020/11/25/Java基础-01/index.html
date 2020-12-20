@@ -19,9 +19,9 @@
 
   <!-- 页面元数据 -->
   
-  <title>Java基础_01 - Hexo</title>
+  <title>Java基础_01 - 健</title>
   
-    <meta name="keywords" content="new,构造器,this,static,block,private,Java基础">
+    <meta name="keywords" content="Java基础,new,构造器,this,static,block,private">
   
 
   
@@ -31,11 +31,27 @@
 
   <!-- import meta -->
   
+    
+      <meta name="msapplication-TileColor" content="#ffffff">
+    
+      <meta name="msapplication-config" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/browserconfig.xml">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
 
   <!-- link -->
   
 
   <!-- import link -->
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/site.webmanifest">
+  <link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon.ico">
   
 
   
@@ -456,8 +472,8 @@
 <h2 id="二、构造器-构造方法-构造函数-一种特殊的方法"><a href="#二、构造器-构造方法-构造函数-一种特殊的方法" class="headerlink" title="二、构造器|构造方法|构造函数:(一种特殊的方法)"></a>二、构造器|构造方法|构造函数:(一种特殊的方法)</h2><p>使用:必须跟随new关键字使用，是创建对象的第一步。<br>作用:初始化对象信息。<br>注意:在构造器中可以定义return但不能带返回值。</p>
 <h2 id="三、this关键字-指代当前new对象，是动态的"><a href="#三、this关键字-指代当前new对象，是动态的" class="headerlink" title="三、this关键字:(指代当前new对象，是动态的)"></a>三、this关键字:(指代当前new对象，是动态的)</h2><p>作用:①在构造器的首行，可以调用本类中其他构造器<br>    ②区分同名变量问题:成员变量与局部变量问题(否则最寻就近原则)。<br>注意:this不能正在static所修饰的方法中，因为this是指向当前new对象，static不是所属于对象的，是属于本类的，没有对象就谈不上this了。</p>
 <h2 id="四、static关键字-修饰变量、方法、块、类"><a href="#四、static关键字-修饰变量、方法、块、类" class="headerlink" title="四、static关键字:修饰变量、方法、块、类"></a>四、static关键字:修饰变量、方法、块、类</h2><p>1、静态变量是独一份的，在类第一次加载过后就被初始化放到方法区中的静态区。<br>2、静态方法中不能使用this<br>3、在静态的内容中，只能使用静态内容。成员内容通过对象调用。<br>4、static只能修饰成员，不能修饰局部。<br>5、静态內部类，可以直接作为普通类使用，不需要先实例化外部类。<br>6、静态代码块在类中方法外，在类第一次加载完成后就执行，并且只执行一次(多个会从上到下依次执行)<br>注意：</p>
-<img src="/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/1.png" class="lazyload" data-srcset="/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/1.png" srcset="data:image/png;base64,666" class>结果为10；
-<img src="/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/2.png" class="lazyload" data-srcset="/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/2.png" srcset="data:image/png;base64,666" class>结果为1；
+<img src="/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/1.png" class="lazyload" data-srcset="/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/1.png" srcset="data:image/png;base64,666">结果为10；
+<img src="/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/2.png" class="lazyload" data-srcset="/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/2.png" srcset="data:image/png;base64,666">结果为1；
 <h2 id="五、block-自成作用域"><a href="#五、block-自成作用域" class="headerlink" title="五、block:自成作用域{}"></a>五、block:自成作用域{}</h2><p>1、普通语句块|局部代码块：定义在方法中，跟随方法调用。<br>2、构造快：定义在类中方法外，跟随new创建对象时调用。构造块在构造器之前运行，若一个类有多个构造块则从上至下依次执行。编译时，构造快中的代码会被编译到构造器中的代码最前面，但是在this调用其他构造器之后。<br>注意：只是进去this但是不会执行要进去的其他构造器的内容，必定是先执行构造块的内容。<br>3、静态块：在类中方法外在类第一次加载完成后就执行，并且只执行一次(多个从上至下一次进行)<br>4、同步块</p>
 <h2 id="六、private关键字"><a href="#六、private关键字" class="headerlink" title="六、private关键字:"></a>六、private关键字:</h2><p>把属性私有化，提供公共的访问方式是封装的一个非常具体的体现。类也是封装的体现。(封装就是隐藏内部的实现细节，对外提供公共的访问方式。)</p>
 
@@ -506,7 +522,7 @@
         
           
   
-  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/new/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>new</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%9E%84%E9%80%A0%E5%99%A8/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>构造器</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/this/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>this</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/static/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>static</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/block/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>block</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/private/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>private</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java基础</p></a></div>
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Java%E5%9F%BA%E7%A1%80/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Java基础</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/new/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>new</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E6%9E%84%E9%80%A0%E5%99%A8/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>构造器</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/this/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>this</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/static/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>static</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/block/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>block</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/private/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>private</p></a></div>
 
 
         
@@ -519,7 +535,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/&title=Java基础_01 - Hexo&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/&title=Java基础_01 - 健&summary="
           
           >
           
@@ -531,7 +547,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/&title=Java基础_01 - Hexo&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/&title=Java基础_01 - 健&summary="
           
           >
           
@@ -543,7 +559,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/&title=Java基础_01 - Hexo&summary="
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/11/25/Java%E5%9F%BA%E7%A1%80-01/&title=Java基础_01 - 健&summary="
           
           >
           
@@ -705,12 +721,13 @@
     
       
         <div class='copyright'>
-        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+        <p><a href="http://www.beian.miit.gov.cn/" target="_blank" rel="noopener">Copyright © 2017-2020 晋ICP备20005012号</a></p>
 
         </div>
       
     
   </footer>
+
 
 
       <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>

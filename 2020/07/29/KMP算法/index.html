@@ -19,7 +19,7 @@
 
   <!-- 页面元数据 -->
   
-  <title>KMP算法 - Hexo</title>
+  <title>KMP算法 - 健</title>
   
     <meta name="keywords" content="KMP算法">
   
@@ -31,11 +31,27 @@
 
   <!-- import meta -->
   
+    
+      <meta name="msapplication-TileColor" content="#ffffff">
+    
+      <meta name="msapplication-config" content="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/browserconfig.xml">
+    
+      <meta name="theme-color" content="#ffffff">
+    
+  
 
   <!-- link -->
   
 
   <!-- import link -->
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon-16x16.png">
+  <link rel="manifest" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/site.webmanifest">
+  <link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/favicon/favicon.ico">
   
 
   
@@ -452,21 +468,21 @@
 
 
   
-  <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/1.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/1.png" srcset="data:image/png;base64,666" class>
+  <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/1.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/1.png" srcset="data:image/png;base64,666">
 <p>给定两个字符串S=”s1s2s3…sn”和T= “t1t2t3…tm”在主串S中寻找子串 T的过程就称之为字符串的模式匹配（patternmatching），T 称为模式（pattern）。如果匹配成功，则返回T在S中的位置；如果匹配失败，则返回-1。 </p>
 <h2 id="KMP算法解答"><a href="#KMP算法解答" class="headerlink" title="KMP算法解答"></a>KMP算法解答</h2><p>KMP算法的核心是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数，从而达到快速匹配的目的。<br>KMP算法和BF算法的“开局”是一样的，即从主串x=0的字符开始和模式串y=0的字符进行比较。<br>第一轮，主串和模式串的第一个字符不匹配，则让主串的 x=1字符和模式串的 y=0的字符进行 匹配，如下图所示：</p>
-<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/2.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/2.png" srcset="data:image/png;base64,666" class>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/2.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/2.png" srcset="data:image/png;base64,666">
 <p>第二轮，主串索引 x为[1,4]的字符和模式串索引 y为[0,3]的字符匹配，此时主串索引 x=5 的字 符和模式串索引 y=4的字符不匹配。</p>
-<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/3.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/3.png" srcset="data:image/png;base64,666" class>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/3.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/3.png" srcset="data:image/png;base64,666">
 <p>这时候，如何有效利用已匹配的字符串“ABAB”呢？我们可以发现，在字符串“ABAB”当中，后 两个字符“AB”和前两位字符“AB”是相同的：</p>
-<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/4.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/4.png" srcset="data:image/png;base64,666" class>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/4.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/4.png" srcset="data:image/png;base64,666">
 <p>因此，此时主串 x的指针无需回溯，只需修改 y指向2 即可，也就是让主串x=5的字符和模式<br>串 y=2的字符进行比较，这样就减少了比较的次数。</p>
-<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/5.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/5.png" srcset="data:image/png;base64,666" class>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/5.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/5.png" srcset="data:image/png;base64,666">
 <p>此时代码怎么实现指针y的移动就成为算法的最关键的问题。此时就需要引入一个next数组，使得next[y]为指针y要去的地方。</p>
 <h2 id="求解next数组"><a href="#求解next数组" class="headerlink" title="求解next数组"></a>求解next数组</h2><p>由于已匹配前缀数组在主串和模式串当中是相同的，所以我们仅仅依据模式串，就足以生成next数组。<br>就下来，我们以模式串”ABABCABAAB”为例，来讲解next 数组的推导过程，如下图所示：</p>
-<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/6.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/6.png" srcset="data:image/png;base64,666" class>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/6.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/6.png" srcset="data:image/png;base64,666">
 <p>索引为 0时，该字符串没有前缀，因此最长共有元素长度计为-1（方便 KMP 算法使用）。<br>索引为 1时，该字符串的前缀为”A”，此时没有共有元素，因此最长共有元素长度为0。<br>索引为 2时，该字符串的前缀为”AB”，此时没有共有元素，因此最长共有元素长度为0。<br>索引为 3时，该字符串的前缀为”ABA”，此时共有元素为”A”，因此最长共有元素长度为1。<br>索引为 4时，该字符串的前缀为”ABAB”，此时共有元素为”AB”，因此最长共有元素长度为2。<br>索引为 5时，该字符串的前缀为”ABABC”，此时没有共有元素，因此最长共有元素长度为0。<br>索引为 6时，该字符串的前缀为”ABABCA”，此时共有元素为”A”，因此最长共有元素长度为1。<br>索引为 7时，该字符串的前缀为”ABABCAB”，此时共有元素为”AB”，因此最长共有元素长度为2。<br>索引为 8时，该字符串的前缀为”ABABCABA”，此时共有元素为”ABA”，因此最长共有元素长度为3。<br>索引为 9时，该字符串的前缀为”ABABCABAA”，此时共有元素为”A”，因此最长共有元素长度为 1。<br>因此，模式串”ABABCABAAB”对应的next数组就是{-1,0,0,1,2,0,1,2,3,1}，如下图所示：</p>
-<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/7.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/7.png" srcset="data:image/png;base64,666" class>
+<img src="/2020/07/29/KMP%E7%AE%97%E6%B3%95/7.png" class="lazyload" data-srcset="/2020/07/29/KMP%E7%AE%97%E6%B3%95/7.png" srcset="data:image/png;base64,666">
 <p>也就是说，主串索引 x的字符和模式串索引 y的字符不匹配，模式串y指向的位置就是 next[y] 所对应的位置。例如，当 x=5，y=4所对应的字符不匹配是，模式串 y 指向的位置就是 next[4]所对 应的位置，也就是让 y指向索引为 2的位置。</p>
 <h2 id="KMP算法的代码实现"><a href="#KMP算法的代码实现" class="headerlink" title="KMP算法的代码实现"></a>KMP算法的代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">public class Test02 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String s1 &#x3D; &quot;BABABACABABCABAABD&quot;;</span><br><span class="line">        String s2 &#x3D; &quot;ABABCABAAB&quot;;</span><br><span class="line">        System.out.println(Arrays.toString(getNext(s2)));</span><br><span class="line">        System.out.println(kmp(s1,s2));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int kmp(String s1,String s2)&#123;</span><br><span class="line">        int[] next &#x3D; getNext(s2);</span><br><span class="line">        int x &#x3D; 0;</span><br><span class="line">        int y &#x3D; 0;</span><br><span class="line">        while (x&lt;s1.length()&amp;&amp;y&lt;s2.length()) &#123;</span><br><span class="line">            if(y&#x3D;&#x3D;-1||s1.charAt(x)&#x3D;&#x3D;s2.charAt(y))&#123;</span><br><span class="line">                x++;</span><br><span class="line">                y++;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                y&#x3D;next[y];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if(y&#x3D;&#x3D;s2.length())&#123;</span><br><span class="line">            return x-y;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int[] getNext(String s)&#123;</span><br><span class="line">        int [] next &#x3D; new int[s.length()];</span><br><span class="line">        next[0]&#x3D;-1;</span><br><span class="line">        int y &#x3D; 0;</span><br><span class="line">        int len &#x3D; -1;</span><br><span class="line"></span><br><span class="line">        while(y&lt;s.length()-1)&#123;</span><br><span class="line">            if(len&#x3D;&#x3D;-1||s.charAt(len)&#x3D;&#x3D;s.charAt(y))&#123;</span><br><span class="line">                y++; </span><br><span class="line">                len++; </span><br><span class="line">				next[y]&#x3D;len;</span><br><span class="line"></span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                len &#x3D; next[len];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="代码详解"><a href="#代码详解" class="headerlink" title="代码详解"></a>代码详解</h2><p>在上述代码中，getNext()方法最为关键，让我们接下来一步一步分析：<br>1、定义两个指针y和len,相对于定义的next数组来说，y相当于next数组的索引值(范围是从0到next.length-1)、len相当与next中的元素值(len指向此时索引值为next[y]的元素)；而这两个指针相对于模式串来说，y表示此时模式串与主串相比较的元素、len表示如果此时模式串与主串相比较的元素不同时，下一步y要移动的位置。<br>2、如果s.charAt(len)==s.charAt(y)时，也就是相当于next[len+1]之前的len个元素和next[y+1]之前的len个元素都相同，所以进行y++;len++；next[y]=len。<br>3、如果s.charAt(len)!=s.charAt(y)时，也就是相当于next[len+1]之前的len个元素和next[y+1]之前的len个元素不相同，此时进行len=next[len];使得next[len+1]之前的len个元素和next[y+1]之前的len个元素都相同。</p>
@@ -529,7 +545,7 @@
       
         <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/29/KMP%E7%AE%97%E6%B3%95/&title=KMP算法 - Hexo&summary="
+          href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2020/07/29/KMP%E7%AE%97%E6%B3%95/&title=KMP算法 - 健&summary="
           
           >
           
@@ -541,7 +557,7 @@
       
         <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
           
-          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/29/KMP%E7%AE%97%E6%B3%95/&title=KMP算法 - Hexo&summary="
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://yoursite.com/2020/07/29/KMP%E7%AE%97%E6%B3%95/&title=KMP算法 - 健&summary="
           
           >
           
@@ -553,7 +569,7 @@
       
         <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
           
-          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/29/KMP%E7%AE%97%E6%B3%95/&title=KMP算法 - Hexo&summary="
+          href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2020/07/29/KMP%E7%AE%97%E6%B3%95/&title=KMP算法 - 健&summary="
           
           >
           
@@ -716,12 +732,13 @@
     
       
         <div class='copyright'>
-        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+        <p><a href="http://www.beian.miit.gov.cn/" target="_blank" rel="noopener">Copyright © 2017-2020 晋ICP备20005012号</a></p>
 
         </div>
       
     
   </footer>
+
 
 
       <a id="s-top" class="fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
